@@ -14,13 +14,13 @@ const PROJECTS: Project[] = [
   {
     name: "Nextly",
     desc: "TypeScript-first headless CMS framework inside Next.js — code-defined schemas plus a drag-and-drop visual builder, RBAC, and pluggable Postgres/MySQL/SQLite adapters.",
-    chips: ["Next.js", "TypeScript", "Drizzle ORM", "Docker"],
+    chips: ["Next.js", "TypeScript", "Node.js", "Drizzle ORM", "Docker", "NPM (Package Publishing)", "CLI Development"],
     image: "/projects/nextly.svg",
   },
   {
     name: "RextAI",
     desc: "AI content-intelligence SaaS with an E-E-A-T-aware article editor and one-click auto-publish to WordPress, Webflow and Ghost.",
-    chips: ["Next.js", "LangChain", "OpenAI", "Node.js"],
+    chips: ["Next.js", "LangChain", "OpenAI", "Python"],
     image: "/projects/rextai.svg",
   },
   {

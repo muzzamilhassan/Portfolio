@@ -52,12 +52,12 @@ export default function Contact() {
         </a>
       </div>
       <div className="footer">
-        <span>© 2026 Muzzamil Hassan — Built with Next.js</span>
+        <span>© 2026 Muzzamil Hassan</span>
         <div className="footer__socials">
           <a href="https://github.com/muzzamilhassan" target="_blank" rel="noreferrer">
             GitHub
           </a>
-          <a href="https://linkedin.com/in/muzzamilhassan" target="_blank" rel="noreferrer">
+          <a href="https://linkedin.com/in/muzzamilhassann" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
           <a href="mailto:muzzamilhassan302@gmail.com">Email</a>

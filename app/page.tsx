@@ -20,15 +20,18 @@ export default function Home() {
         <Hero />
         <Marquee
           items={[
+            "JavaScript",
             "React",
             "Next.js",
             "TypeScript",
             "Node.js",
-            "NestJS",
             "Express",
+            "NestJS",
             "PostgreSQL",
             "MongoDB",
             "Drizzle ORM",
+            "Mongoose",
+            "TypeORM",
             "Tailwind CSS",
             "Docker",
           ]}
@@ -38,8 +41,12 @@ export default function Home() {
         <Services />
         <Marquee
           accent
-          items={["Open to opportunities", "Remote friendly", "Open to opportunities", "Remote friendly"]}
-        />
+          items={[
+            "Open to opportunities",
+            "Remote friendly",
+            "Onsite friendly",
+            "Hybrid friendly",
+          ]} />
         <Contact />
       </main>
     </>
