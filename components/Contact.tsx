@@ -47,8 +47,8 @@ export default function Contact() {
             </span>
           </span>
         </h2>
-        <a className="contact__email" href="mailto:muzzamilhassan302@gmail.com">
-          muzzamilhassan302@gmail.com
+        <a className="contact__email" href="mailto:muzzamilhassandev@gmail.com">
+          muzzamilhassandev@gmail.com
         </a>
       </div>
       <div className="footer">
@@ -60,7 +60,7 @@ export default function Contact() {
           <a href="https://linkedin.com/in/muzzamilhassann" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
-          <a href="mailto:muzzamilhassan302@gmail.com">Email</a>
+          <a href="mailto:muzzamilhassandev@gmail.com">Email</a>
         </div>
         <a href="#top">Back to top ↑</a>
       </div>
