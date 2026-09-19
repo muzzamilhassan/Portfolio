@@ -8,6 +8,7 @@ type Project = {
   desc: string;
   chips: string[];
   image: string;
+  live: string;
 };
 
 type MoreProject = {
@@ -15,6 +16,8 @@ type MoreProject = {
   tagline: string;
   desc: string;
   chips: string[];
+  image: string;
+  live: string;
 };
 
 const PROJECTS: Project[] = [
@@ -22,25 +25,29 @@ const PROJECTS: Project[] = [
     name: "Nextly",
     desc: "TypeScript-first headless CMS framework inside Next.js — code-defined schemas plus a drag-and-drop visual builder, RBAC, and pluggable Postgres/MySQL/SQLite adapters.",
     chips: ["Next.js", "TypeScript", "Node.js", "Drizzle ORM", "Docker", "NPM (Package Publishing)", "CLI Development"],
-    image: "/projects/nextly.svg",
+    image: "/projects/nextly-real.webp",
+    live: "https://nextlyhq.com/",
   },
   {
     name: "RextAI",
     desc: "AI content-intelligence SaaS with an E-E-A-T-aware article editor and one-click auto-publish to WordPress, Webflow and Ghost.",
     chips: ["Next.js", "LangChain", "OpenAI", "Python"],
-    image: "/projects/rextai.svg",
+    image: "/projects/rextai-real.webp",
+    live: "https://rext.ai/",
   },
   {
     name: "HireIQ",
     desc: "AI-powered recruitment and candidate-evaluation platform built on LangGraph agent workflows.",
     chips: ["Next.js", "TypeScript", "LangGraph", "OpenAI"],
-    image: "/projects/hireiq.svg",
+    image: "/projects/hireiq-real.webp",
+    live: "https://evalyn-omega.vercel.app/",
   },
   {
     name: "4Rivers Equipment",
     desc: "Enterprise e-commerce and equipment-rental platform with Stripe checkout and Google Maps location search.",
     chips: ["Next.js", "Redux Toolkit", "Stripe", "Google Maps"],
-    image: "/projects/4rivers.svg",
+    image: "/projects/4rivers-real.webp",
+    live: "https://4riversequipment.com/",
   },
 ];
 
@@ -50,18 +57,24 @@ const MORE_PROJECTS: MoreProject[] = [
     tagline: "B2B Equipment Management Platform",
     desc: "B2B equipment management platform with Stripe billing and Google Maps-based inventory and location search.",
     chips: ["Next.js", "Redux Toolkit", "Stripe", "Google Maps"],
+    image: "/projects/21century-real.webp",
+    live: "https://21stcenturyequipment.com/",
   },
   {
     name: "CodexSpot",
     tagline: "Developer Knowledge & Resource Hub",
     desc: "A knowledge base and resource hub for developers to share code snippets, guides and tooling.",
     chips: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
+    image: "/projects/codexspot-real.webp",
+    live: "https://codexspot.com/",
   },
   {
     name: "Shopify CRO",
     tagline: "Conversion-Rate Optimization",
     desc: "High-converting Shopify storefront work — fast, polished landing experiences tuned for conversion.",
     chips: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    image: "/projects/shopify-cro-real.webp",
+    live: "https://cro-nu.vercel.app/",
   },
 ];
 
@@ -172,8 +185,13 @@ export default function Work() {
                     </span>
                   ))}
                 </div>
-                <a className="panel__link" href="#contact">
-                  View case study →
+                <a
+                  className="panel__link"
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit live site ↗
                 </a>
               </div>
               <div className="panel__media">
@@ -197,6 +215,19 @@ export default function Work() {
             <div className="more-grid">
               {MORE_PROJECTS.map((project, i) => (
                 <article className="more-card" key={project.name}>
+                  <a
+                    className="more-card__media"
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${project.name} live site`}
+                  >
+                    <img
+                      src={project.image}
+                      alt={`${project.name} — screenshot`}
+                      loading="lazy"
+                    />
+                  </a>
                   <span className="more-card__num">
                     0{PROJECTS.length + i + 1}
                   </span>
@@ -210,6 +241,14 @@ export default function Work() {
                       </span>
                     ))}
                   </div>
+                  <a
+                    className="more-card__link"
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit live site ↗
+                  </a>
                 </article>
               ))}
             </div>
