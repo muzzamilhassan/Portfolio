@@ -94,6 +94,10 @@ export default function Work() {
   const countRef = useRef<HTMLElement>(null);
   const [expanded, setExpanded] = useState(false);
 
+  const total = PROJECTS.length + (expanded ? MORE_PROJECTS.length : 0);
+  const totalRef = useRef(total);
+  totalRef.current = total;
+
   useEffect(() => {
     const mm = gsap.matchMedia(rootRef);
 
@@ -124,8 +128,8 @@ export default function Work() {
               }
               if (countRef.current) {
                 const idx =
-                  Math.round(self.progress * (PROJECTS.length - 1)) + 1;
-                countRef.current.textContent = `0${idx}`;
+                  Math.round(self.progress * (totalRef.current - 1)) + 1;
+                countRef.current.textContent = String(idx).padStart(2, "0");
               }
             },
           },
@@ -158,9 +162,9 @@ export default function Work() {
     return () => mm.revert();
   }, []);
 
-  // recompute pinned-scroll distances after the "more" grid expands/collapses
+  // recompute pinned-scroll distances after panels are appended/removed
   useEffect(() => {
-    const id = window.setTimeout(() => ScrollTrigger.refresh(), 650);
+    const id = window.setTimeout(() => ScrollTrigger.refresh(), 250);
     return () => window.clearTimeout(id);
   }, [expanded]);
 
@@ -174,7 +178,7 @@ export default function Work() {
             </span>
           </h2>
           <p className="showcase__count">
-            <em ref={countRef}>01</em> — 0{PROJECTS.length}
+            <em ref={countRef}>01</em> — {String(total).padStart(2, "0")}
           </p>
         </div>
         <div className="showcase__track" ref={trackRef}>
@@ -211,48 +215,18 @@ export default function Work() {
               </div>
             </article>
           ))}
-        </div>
-        <div className="showcase__progress" aria-hidden="true">
-          <i ref={fillRef} />
-        </div>
-      </div>
 
-      <div className="showcase__more">
-        <div className="more-wrap" data-open={expanded}>
-          <div className="more" inert={!expanded}>
-            <div className="more-grid">
-              {MORE_PROJECTS.map((project, i) => (
-                <article className="more-card" key={project.name}>
-                  {project.live ? (
-                    <a
-                      className="more-card__media"
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit ${project.name} live site`}
-                    >
-                      <img
-                        src={project.image}
-                        alt={`${project.name} — screenshot`}
-                        loading="lazy"
-                      />
-                    </a>
-                  ) : (
-                    <div className="more-card__media">
-                      <img
-                        src={project.image}
-                        alt={`${project.name} — pipeline`}
-                        loading="lazy"
-                      />
-                    </div>
-                  )}
-                  <span className="more-card__num">
-                    0{PROJECTS.length + i + 1}
+          {expanded &&
+            MORE_PROJECTS.map((project, i) => (
+              <article className="panel" key={project.name}>
+                <div className="panel__info">
+                  <span className="panel__num" aria-hidden="true">
+                    {String(PROJECTS.length + i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="more-card__name">{project.name}</h3>
-                  <p className="more-card__tagline">{project.tagline}</p>
-                  <p className="more-card__desc">{project.desc}</p>
-                  <div className="more-card__chips">
+                  <h3 className="panel__name">{project.name}</h3>
+                  <p className="panel__tagline">{project.tagline}</p>
+                  <p className="panel__desc">{project.desc}</p>
+                  <div className="panel__chips">
                     {project.chips.map((chip) => (
                       <span className="chip" key={chip}>
                         {chip}
@@ -261,7 +235,7 @@ export default function Work() {
                   </div>
                   {project.live ? (
                     <a
-                      className="more-card__link"
+                      className="panel__link"
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -269,27 +243,43 @@ export default function Work() {
                       Visit live site ↗
                     </a>
                   ) : (
-                    <span className="more-card__link more-card__link--static">
+                    <span className="panel__link panel__link--static">
                       CI-run automation — no public URL
                     </span>
                   )}
-                </article>
-              ))}
-            </div>
+                </div>
+                <div className="panel__media">
+                  <img
+                    src={project.image}
+                    alt={`${project.name} — ${project.live ? "screenshot" : "pipeline"}`}
+                    loading="lazy"
+                  />
+                </div>
+              </article>
+            ))}
+
+          <div className="panel panel--end">
+            <p className="panel__end-label" aria-hidden="true">
+              {expanded ? "$ all builds loaded ✓" : "$ load --more"}
+            </p>
+            <button
+              type="button"
+              className={`more-toggle${expanded ? " is-open" : ""}`}
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+            >
+              {expanded
+                ? "Show less"
+                : `View ${MORE_PROJECTS.length} more projects`}
+              <span className="more-toggle__icon" aria-hidden="true">
+                ↓
+              </span>
+            </button>
           </div>
         </div>
-
-        <button
-          type="button"
-          className={`more-toggle${expanded ? " is-open" : ""}`}
-          onClick={() => setExpanded((v) => !v)}
-          aria-expanded={expanded}
-        >
-          {expanded ? "Show less" : `View ${MORE_PROJECTS.length} more projects`}
-          <span className="more-toggle__icon" aria-hidden="true">
-            ↓
-          </span>
-        </button>
+        <div className="showcase__progress" aria-hidden="true">
+          <i ref={fillRef} />
+        </div>
       </div>
     </section>
   );
