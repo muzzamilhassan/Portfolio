@@ -61,6 +61,14 @@ const MORE_PROJECTS: MoreProject[] = [
     live: "https://21stcenturyequipment.com/",
   },
   {
+    name: "The Backyard",
+    tagline: "John Deere Residential Storefront",
+    desc: "21st Century Equipment's dedicated residential John Deere store — equipment and parts search, shop and garage catalogs, dealer locations, events and blog, extending the dealership to suburban and rural homeowners.",
+    chips: ["Next.js", "Nextly CMS", "React", "TypeScript"],
+    image: "/projects/backyard-21st.webp",
+    live: "https://thebackyard.com/",
+  },
+  {
     name: "Shopify CRO Studio",
     tagline: "Conversion Rate Optimization for Shopify Brands",
     desc: "CRO platform for Shopify / Shopify Plus brands — audits, A/B testing and page-speed work with measurable case-study lifts (+22% subscription rate, +14.2% mobile conversion), plus Shopify SEO, AI SEO and GEO.",
