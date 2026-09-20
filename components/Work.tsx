@@ -97,6 +97,8 @@ export default function Work() {
   const total = PROJECTS.length + (expanded ? MORE_PROJECTS.length : 0);
   const totalRef = useRef(total);
   totalRef.current = total;
+  const stRef = useRef<ScrollTrigger | null>(null);
+  const prevExpanded = useRef(false);
 
   useEffect(() => {
     const mm = gsap.matchMedia(rootRef);
@@ -111,7 +113,7 @@ export default function Work() {
 
         const distance = () => track.scrollWidth - window.innerWidth;
 
-        gsap.to(track, {
+        const tween = gsap.to(track, {
           x: () => -distance(),
           ease: "none",
           scrollTrigger: {
@@ -134,6 +136,7 @@ export default function Work() {
             },
           },
         });
+        stRef.current = tween.scrollTrigger ?? null;
 
         gsap.from(".section__title > span", {
           yPercent: 110,
@@ -162,10 +165,27 @@ export default function Work() {
     return () => mm.revert();
   }, []);
 
-  // recompute pinned-scroll distances after panels are appended/removed
+  // after panels are appended/removed the pin distance changes; recompute it
+  // and re-anchor the scroll, otherwise the appended panels end up behind the
+  // cursor (expand) or the page overshoots into the footer (collapse)
   useEffect(() => {
-    const id = window.setTimeout(() => ScrollTrigger.refresh(), 250);
-    return () => window.clearTimeout(id);
+    if (prevExpanded.current === expanded) return;
+    prevExpanded.current = expanded;
+    ScrollTrigger.refresh();
+    const st = stRef.current;
+    const track = trackRef.current;
+    const first = track?.children[0] as HTMLElement | undefined;
+    if (!st || !track || !first || !st.animation) return;
+    const d = track.scrollWidth - window.innerWidth;
+    const y =
+      expanded
+        ? st.start +
+          ((track.children[PROJECTS.length] as HTMLElement | undefined)
+            ?.offsetLeft ?? d) -
+          first.offsetLeft
+        : st.start + d;
+    window.scrollTo(0, Math.round(y));
+    st.animation.progress((y - st.start) / d);
   }, [expanded]);
 
   return (
