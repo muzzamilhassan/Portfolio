@@ -979,6 +979,16 @@ canvas {
   opacity: 0.7;
 }
 
+.more-card__link--static {
+  color: var(--muted);
+  border-bottom-color: var(--line);
+  cursor: default;
+}
+
+.more-card__link--static:hover {
+  opacity: 1;
+}
+
 .more-toggle {
   display: inline-flex;
   align-items: center;

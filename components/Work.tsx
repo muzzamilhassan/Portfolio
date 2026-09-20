@@ -17,35 +17,35 @@ type MoreProject = {
   desc: string;
   chips: string[];
   image: string;
-  live: string;
+  live: string | null;
 };
 
 const PROJECTS: Project[] = [
   {
     name: "Nextly",
-    desc: "TypeScript-first headless CMS framework inside Next.js — code-defined schemas plus a drag-and-drop visual builder, RBAC, and pluggable Postgres/MySQL/SQLite adapters.",
-    chips: ["Next.js", "TypeScript", "Node.js", "Drizzle ORM", "Docker", "NPM (Package Publishing)", "CLI Development"],
+    desc: "Open-source headless CMS & visual page builder for Next.js — on npm and accepted into the Vercel OSS Program. Server-rendered blocks, field-level RBAC, version history, scheduled releases and pluggable DB/storage adapters.",
+    chips: ["Next.js", "TypeScript", "Drizzle ORM", "Node.js", "TanStack Query", "Docker", "Monorepo"],
     image: "/projects/nextly-real.webp",
     live: "https://nextlyhq.com/",
   },
   {
     name: "RextAI",
-    desc: "AI content-intelligence SaaS with an E-E-A-T-aware article editor and one-click auto-publish to WordPress, Webflow and Ghost.",
-    chips: ["Next.js", "LangChain", "OpenAI", "Python"],
+    desc: "AI content-intelligence & SEO platform trusted by 500+ teams (4.8/5 on G2) — 2,000+ word E-E-A-T articles with a humanization layer, on-page SEO automation and one-click auto-publish to WordPress, Webflow, Ghost and Shopify.",
+    chips: ["Next.js", "React", "TypeScript", "Node.js", "OpenAI API", "Tailwind CSS"],
     image: "/projects/rextai-real.webp",
     live: "https://rext.ai/",
   },
   {
-    name: "HireIQ",
-    desc: "AI-powered recruitment and candidate-evaluation platform built on LangGraph agent workflows.",
-    chips: ["Next.js", "TypeScript", "LangGraph", "OpenAI"],
+    name: "HireIQ (Evalyn)",
+    desc: "AI-powered recruitment & evaluation platform that cuts screening time by 90% — automated AI interviews, real-time coding assessments with instant scoring, and smart candidate matching with per-candidate AI insights.",
+    chips: ["Next.js", "React", "TypeScript", "Node.js", "OpenAI API", "Tailwind CSS"],
     image: "/projects/hireiq-real.webp",
     live: "https://evalyn-omega.vercel.app/",
   },
   {
     name: "4Rivers Equipment",
-    desc: "Enterprise e-commerce and equipment-rental platform with Stripe checkout and Google Maps location search.",
-    chips: ["Next.js", "Redux Toolkit", "Stripe", "Google Maps"],
+    desc: "Enterprise e-commerce & rental platform for a John Deere / Wirtgen dealership serving three US states — migrated from WordPress to Nextly with shop filtering, customer accounts, quote-based checkout and CMS-driven pages.",
+    chips: ["Next.js", "Nextly CMS", "React", "TypeScript", "Redux Toolkit", "Google Maps API"],
     image: "/projects/4rivers-real.webp",
     live: "https://4riversequipment.com/",
   },
@@ -54,27 +54,27 @@ const PROJECTS: Project[] = [
 const MORE_PROJECTS: MoreProject[] = [
   {
     name: "21Century Equipment",
-    tagline: "B2B Equipment Management Platform",
-    desc: "B2B equipment management platform with Stripe billing and Google Maps-based inventory and location search.",
-    chips: ["Next.js", "Redux Toolkit", "Stripe", "Google Maps"],
+    tagline: "John Deere Dealership E-Commerce",
+    desc: "Rebuilt the John Deere dealership storefront on Nextly, migrating off WordPress — structured catalog browsing, cart & quote flows, dealer locator map, IntelliDealer customer portal and OEM parts portal.",
+    chips: ["Next.js", "Nextly CMS", "Redux Toolkit", "Google Maps API"],
     image: "/projects/21century-real.webp",
     live: "https://21stcenturyequipment.com/",
   },
   {
-    name: "CodexSpot",
-    tagline: "Developer Knowledge & Resource Hub",
-    desc: "A knowledge base and resource hub for developers to share code snippets, guides and tooling.",
-    chips: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
-    image: "/projects/codexspot-real.webp",
-    live: "https://codexspot.com/",
-  },
-  {
-    name: "Shopify CRO",
-    tagline: "Conversion-Rate Optimization",
-    desc: "High-converting Shopify storefront work — fast, polished landing experiences tuned for conversion.",
+    name: "Shopify CRO Studio",
+    tagline: "Conversion Rate Optimization for Shopify Brands",
+    desc: "CRO platform for Shopify / Shopify Plus brands — audits, A/B testing and page-speed work with measurable case-study lifts (+22% subscription rate, +14.2% mobile conversion), plus Shopify SEO, AI SEO and GEO.",
     chips: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     image: "/projects/shopify-cro-real.webp",
     live: "https://cro-nu.vercel.app/",
+  },
+  {
+    name: "YouTube Automation",
+    tagline: "Multi-Channel AI Content Factory",
+    desc: "Four branded YouTube channels produced daily by GitHub Actions cron pipelines — Node.js engines for trend research, Ollama metadata and Whisper narration, published via the YouTube Data API with 5-platform cross-posting.",
+    chips: ["Node.js", "GitHub Actions", "MCP", "Ollama", "Whisper"],
+    image: "/projects/youtube-automation.webp",
+    live: null,
   },
 ];
 
@@ -215,19 +215,29 @@ export default function Work() {
             <div className="more-grid">
               {MORE_PROJECTS.map((project, i) => (
                 <article className="more-card" key={project.name}>
-                  <a
-                    className="more-card__media"
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit ${project.name} live site`}
-                  >
-                    <img
-                      src={project.image}
-                      alt={`${project.name} — screenshot`}
-                      loading="lazy"
-                    />
-                  </a>
+                  {project.live ? (
+                    <a
+                      className="more-card__media"
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${project.name} live site`}
+                    >
+                      <img
+                        src={project.image}
+                        alt={`${project.name} — screenshot`}
+                        loading="lazy"
+                      />
+                    </a>
+                  ) : (
+                    <div className="more-card__media">
+                      <img
+                        src={project.image}
+                        alt={`${project.name} — pipeline`}
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   <span className="more-card__num">
                     0{PROJECTS.length + i + 1}
                   </span>
@@ -241,14 +251,20 @@ export default function Work() {
                       </span>
                     ))}
                   </div>
-                  <a
-                    className="more-card__link"
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Visit live site ↗
-                  </a>
+                  {project.live ? (
+                    <a
+                      className="more-card__link"
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit live site ↗
+                    </a>
+                  ) : (
+                    <span className="more-card__link more-card__link--static">
+                      CI-run automation — no public URL
+                    </span>
+                  )}
                 </article>
               ))}
             </div>
