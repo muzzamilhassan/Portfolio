@@ -36,13 +36,6 @@ const PROJECTS: Project[] = [
     live: "https://rext.ai/",
   },
   {
-    name: "HireIQ (Evalyn)",
-    desc: "AI-powered recruitment & evaluation platform that cuts screening time by 90% — automated AI interviews, real-time coding assessments with instant scoring, and smart candidate matching with per-candidate AI insights.",
-    chips: ["Next.js", "React", "TypeScript", "Node.js", "OpenAI API", "Tailwind CSS"],
-    image: "/projects/hireiq-real.webp",
-    live: "https://evalyn-omega.vercel.app/",
-  },
-  {
     name: "4Rivers Equipment",
     desc: "Enterprise e-commerce & rental platform for a John Deere / Wirtgen dealership serving three US states — migrated from WordPress to Nextly with shop filtering, customer accounts, quote-based checkout and CMS-driven pages.",
     chips: ["Next.js", "Nextly CMS", "React", "TypeScript", "Redux Toolkit", "Google Maps API"],
