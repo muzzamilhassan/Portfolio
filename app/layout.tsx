@@ -25,7 +25,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Muzzamil Hassan — Full-Stack Developer (MERN / PERN)",
   description:
-    "Portfolio of Muzzamil Hassan, a full-stack developer with 3+ years building React & Next.js frontends, Node.js / NestJS APIs and PostgreSQL/MongoDB data layers — from schema to screen.",
+    "Portfolio of Muzzamil Hassan, a full-stack developer with 2.5+ years building React & Next.js frontends, Node.js / NestJS APIs and PostgreSQL/MongoDB data layers — from schema to screen.",
 };
 
 export const viewport: Viewport = {
