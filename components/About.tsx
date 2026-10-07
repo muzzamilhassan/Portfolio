@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 
 const TEXT =
-  "I'm Muzzamil — a full-stack developer with 3+ years shipping production web apps end to end on the JavaScript / TypeScript stack. React & Next.js on the front, Node.js, Express and NestJS on the back. I've built SaaS platforms, headless CMS systems and e-commerce for real clients — from the first migration to the final deploy.";
+  "I'm Muzzamil — a full-stack developer with 2.5+ years shipping production web apps end to end on the JavaScript / TypeScript stack. React & Next.js on the front, Node.js, Express and NestJS on the back. I've built AI SaaS platforms, open-source developer tooling, headless CMS systems and e-commerce for real clients — from the first migration to the final deploy.";
 
 type Stat = {
   value: number;
@@ -13,8 +13,8 @@ type Stat = {
 };
 
 const STATS: Stat[] = [
-  { value: 3, suffix: "+", label: "Years of experience" },
-  { value: 7, suffix: "", label: "Products shipped" },
+  { value: 2.5, suffix: "+", label: "Years of experience" },
+  { value: 8, suffix: "", label: "Products shipped" },
   { value: 5, suffix: "", label: "Databases in production" },
 ];
 
@@ -52,7 +52,10 @@ export default function About() {
           ease: "power2.out",
           scrollTrigger: { trigger: el, start: "top 85%" },
           onUpdate: () => {
-            el.textContent = Math.round(counter.value) + suffix;
+            el.textContent =
+              (target % 1 === 0
+                ? String(Math.round(counter.value))
+                : counter.value.toFixed(1)) + suffix;
           },
         });
       });

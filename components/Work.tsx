@@ -23,17 +23,24 @@ type MoreProject = {
 const PROJECTS: Project[] = [
   {
     name: "Nextly",
-    desc: "Open-source headless CMS & visual page builder for Next.js — on npm and accepted into the Vercel OSS Program. Server-rendered blocks, field-level RBAC, version history, scheduled releases and pluggable DB/storage adapters.",
+    desc: "Core contributor to an open-source headless CMS & visual page builder for Next.js — on npm and in the Vercel OSS Program. Server-rendered blocks, field-level RBAC, version history, scheduled releases and pluggable DB/storage adapters.",
     chips: ["Next.js", "TypeScript", "Drizzle ORM", "Node.js", "TanStack Query", "Docker", "Monorepo"],
     image: "/projects/nextly-real.webp",
     live: "https://nextlyhq.com/",
   },
   {
     name: "RextAI",
-    desc: "AI content-intelligence & SEO platform trusted by 500+ teams (4.8/5 on G2) — 2,000+ word E-E-A-T articles with a humanization layer, on-page SEO automation and one-click auto-publish to WordPress, Webflow, Ghost and Shopify.",
-    chips: ["Next.js", "React", "TypeScript", "Node.js", "OpenAI API", "Tailwind CSS"],
+    desc: "Built the full platform UI of an AI content-intelligence & SEO platform — keyword analysis dashboard, an AI article editor producing 2,000+ word structured articles, E-E-A-T controls, a humanization interface and auto-publish integrations for WordPress, Webflow, Ghost and Shopify.",
+    chips: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     image: "/projects/rextai-real.webp",
     live: "https://rext.ai/",
+  },
+  {
+    name: "OneMinute Logs",
+    desc: "Open-source Datadog-style log-monitoring SaaS — an npm SDK ships structured logs to a secure NestJS ingest API, piped through NATS JetStream into ClickHouse. Next.js dashboard streams logs live over SSE with a custom filter language and Stripe usage-based billing.",
+    chips: ["NestJS", "NATS JetStream", "ClickHouse", "Next.js", "Redis", "Stripe"],
+    image: "/projects/oneminutelogs.webp",
+    live: "https://oneminutelogs.com/",
   },
   {
     name: "4Rivers Equipment",
